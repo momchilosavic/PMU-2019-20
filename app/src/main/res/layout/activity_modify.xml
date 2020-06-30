@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.modifyActivity.ModifyActivity"
+    android:background="@drawable/garage">
+
+    <ImageView
+        android:id="@+id/paper"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/paper"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.75"/>
+
+    <fragment
+        android:id="@+id/modifyActivityCarFragment"
+        class="com.example.cats.activities.garageActivity.fragments.CarFragment"
+        tools:layout="@layout/fragment_car"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="@id/paper"
+        app:layout_constraintBottom_toBottomOf="@id/paper"
+        app:layout_constraintLeft_toLeftOf="@id/paper"
+        app:layout_constraintRight_toRightOf="@id/paper"/>
+
+    <fragment
+        app:layout_constraintVertical_bias="0"
+        android:id="@+id/modifyActivityInventoryFragment"
+        class="com.example.cats.activities.modifyActivity.InventoryFragment"
+        tools:layout="@layout/fragment_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/paper"/>
+
+    <ImageView
+        android:id="@+id/notebook"
+        android:background="@drawable/notebook"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="0.75"/>
+
+    <fragment
+        android:id="@+id/modifyActivityPartFragment"
+        class="com.example.cats.activities.modifyActivity.PartFragment"
+        tools:layout="@layout/fragment_part"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="@id/notebook"
+        app:layout_constraintBottom_toBottomOf="@id/notebook"
+        app:layout_constraintRight_toRightOf="@id/notebook"
+        app:layout_constraintLeft_toLeftOf="@id/notebook"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
