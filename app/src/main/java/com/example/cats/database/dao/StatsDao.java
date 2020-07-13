@@ -17,7 +17,7 @@ public interface StatsDao {
     @Query("SELECT * FROM stats WHERE id = :id AND isValid = 1")
     LiveData<List<Stats>> getById(int id);
 
-    @Query("SELECT * FROM stats WHERE userId = :userId AND isValid = 1")
+    @Query("SELECT * FROM stats WHERE userId = :userId AND isValid = 1 ORDER BY time ASC")
     LiveData<List<Stats>> getByUserId(int userId);
 
 }

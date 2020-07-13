@@ -16,6 +16,7 @@ public class MediaPlayer {
     private static ArrayList<Integer> playlist;
     private static int i = 0;
     private static boolean delayedPause = false;
+    private static boolean volume = true;
 
     public static void create(final Context context){
         if(mediaPlayer == null) {
@@ -31,24 +32,31 @@ public class MediaPlayer {
                     mp.reset();
                     mp = android.media.MediaPlayer.create(context, playlist.get(i));
                     mp.start();
+                    if(volume) mp.setVolume(1f, 1f);
+                    else mp.setVolume(0f, 0f);
                 }
             });
+            mediaPlayer.start();
+
         }
     }
 
     public static void start(){
         if(mediaPlayer != null)
-            mediaPlayer.start();
+            mediaPlayer.setVolume(1f, 1f);
+        volume = true;
     }
 
     public static void stop(){
         if(mediaPlayer != null)
-            mediaPlayer.pause();
+            mediaPlayer.setVolume(0f, 0f);
+        volume = false;
     }
 
     public static void release(){
         if(mediaPlayer != null)
             mediaPlayer.release();
+        mediaPlayer = null;
     }
 
     public static void setDelayedPause(){

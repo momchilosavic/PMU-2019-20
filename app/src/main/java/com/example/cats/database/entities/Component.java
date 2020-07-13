@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey;
                 childColumns = "userId"
         ))
 public class Component {
-    public static enum Type {BODY, WHEEL, FORKLIFT, ROCKET, STIGNER, CHAINSAW, BLADE};
+    public static enum Type {BODY, WHEEL, FORKLIFT, STIGNER, CHAINSAW, ROCKET, BLADE};
     public static enum Subtype {LOW, MEDIUM, HIGH};
 
     @PrimaryKey(autoGenerate = true)

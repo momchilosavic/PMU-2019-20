@@ -56,7 +56,7 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String mail = mailEditText.getText().toString();
+                final String mail = mailEditText.getText().toString().toLowerCase();
                 final String password = passwordEditText.getText().toString();
                 final String confirmPassword = confirmPasswordEditText.getText().toString();
                 final String username = usernameEditText.getText().toString();

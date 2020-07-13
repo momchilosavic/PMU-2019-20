@@ -18,6 +18,9 @@ public class AppPrefs {
 
     public static boolean read(String key, Activity activity){
         SharedPreferences prefs = activity.getPreferences(Context.MODE_PRIVATE);
-        return prefs.getBoolean(key, true);
+        if(key.equals(SOUND_KEY))
+            return prefs.getBoolean(key, true);
+        else
+            return prefs.getBoolean(key, false);
     }
 }

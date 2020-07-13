@@ -98,6 +98,24 @@ public class UserViewModel extends ViewModel {
         this.statsListMutableLiveData.setValue(stats);
     }
 
+    public void addStats(Stats stats){
+        List<Stats> list = statsListMutableLiveData.getValue();
+        list.add(stats);
+        statsListMutableLiveData.setValue(list);
+    }
+
+    public void addBox(Box box){
+        List<Box> list = boxListMutableLiveData.getValue();
+        list.add(box);
+        boxListMutableLiveData.setValue(list);
+    }
+
+    public void removeBox(Box box){
+        List<Box> list = boxListMutableLiveData.getValue();
+        list.remove(box);
+        boxListMutableLiveData.setValue(list);
+    }
+
     public void updateComponents(List<Component> components){
         this.componentsListMutableLiveData.setValue(components);
     }

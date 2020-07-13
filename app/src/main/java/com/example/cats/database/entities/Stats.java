@@ -36,5 +36,6 @@ public class Stats {
         this.userId = userId;
         this.result = result;
         this.time = time;
+        isValid = true;
     }
 }

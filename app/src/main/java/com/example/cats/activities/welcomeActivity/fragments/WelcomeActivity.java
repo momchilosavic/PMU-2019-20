@@ -91,6 +91,7 @@ public class WelcomeActivity
 
     @Override
     public void onLogin(int userId) {
+        System.err.println("USER ID OR: "  + userId);
         database.ComponentDao().getByUserId(userId).observe(this, new Observer<List<Component>>() {
             @Override
             public void onChanged(List<Component> components) {
@@ -163,7 +164,7 @@ public class WelcomeActivity
             int weaponHealth = new Random().nextInt(10) + 15;
             int weaponPower = new Random().nextInt(30) + 20;
             int weaponEnergy = new Random().nextInt(7) + 5;
-            final Component weapon = new Component(userId, weaponType, 0, weaponHealth, weaponPower, weaponEnergy);
+            final Component weapon = new Component(userId, weaponType, 0, weaponHealth, weaponType == Component.Type.FORKLIFT.ordinal() ? 0 : weaponPower, weaponEnergy);
             new Thread(new Runnable() {
                 @Override
                 public void run() {

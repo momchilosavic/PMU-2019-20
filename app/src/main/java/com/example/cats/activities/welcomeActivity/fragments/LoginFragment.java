@@ -54,7 +54,7 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String mail = mailEditText.getText().toString();
+                final String mail = mailEditText.getText().toString().toLowerCase();
                 final String password = passwordEditText.getText().toString();
 
                 if(mail.isEmpty()) mailLayout.setError("You must enter mail!");

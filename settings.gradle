@@ -1,2 +1,4 @@
 include ':app'
 rootProject.name='CATS'
+include ':unityLibrary'
+project(':unityLibrary').projectDir = new File('..\\CATS\\EXPORT\\unityLibrary')

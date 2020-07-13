@@ -21,4 +21,7 @@ public interface UserDao {
 
     @Query("SELECT password FROM users WHERE mail = :mail AND isValid = 1")
     LiveData<String> getPasswordByMail(String mail);
+
+    @Query("SELECT username FROM users WHERE id = :id")
+    LiveData<String> getUsernameById(int id);
 }

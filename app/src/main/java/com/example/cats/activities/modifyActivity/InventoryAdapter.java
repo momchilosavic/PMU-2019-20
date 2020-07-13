@@ -1,7 +1,16 @@
 package com.example.cats.activities.modifyActivity;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,26 +58,41 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Component component = componentList.get(position);
+        final Component component = componentList.get(position);
 
-        ImageView imageView = holder.imageView;
+        final ImageView imageView = holder.imageView;
         int resourceId = -1;
         switch(Component.Type.values()[component.type]){
             case BODY: resourceId = R.drawable.body; break;
             case BLADE: resourceId = R.drawable.weapon1; break;
             case CHAINSAW: resourceId = R.drawable.chainsaw; break;
-            case FORKLIFT: resourceId = -1;
+            case FORKLIFT: resourceId = R.drawable.forklift; break;
             case ROCKET: resourceId = R.drawable.rocket_launcher; break;
             case STIGNER: resourceId = R.drawable.stinger; break;
             case WHEEL: resourceId = R.drawable.wheel; break;
         }
         imageView.setImageResource(resourceId);
+        imageView.setTag(String.valueOf(String.valueOf(component.type)) + "#" + String.valueOf(component.id));
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Component c = componentList.get(position);
                 mListener.onItemClick(c.type, c.health, c.energy, c.power);
+
+            }
+        });
+
+        imageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Component c = componentList.get(position);
+                mListener.onItemClick(c.type, c.health, c.energy, c.power);
+                ClipData.Item item = new ClipData.Item((String)imageView.getTag());
+                ClipData dragData = new ClipData((String)imageView.getTag(), new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
+                View.DragShadowBuilder myShadow = new View.DragShadowBuilder(imageView);
+                v.startDrag(dragData, myShadow, null, 0);
+                return true;
             }
         });
     }
@@ -81,5 +105,6 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     public interface OnListItemClickListener {
         // TODO: Update argument type and name
         void onItemClick(int type, int health, int energy, int power);
+        void onItemDropped(Component c, View view);
     }
 }

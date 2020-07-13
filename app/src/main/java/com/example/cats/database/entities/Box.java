@@ -8,12 +8,7 @@ import androidx.room.PrimaryKey;
 import java.sql.Timestamp;
 
 @Entity(
-        tableName = "boxes",
-        foreignKeys = @ForeignKey(
-                entity = User.class,
-                parentColumns = "id",
-                childColumns = "userId"
-        )
+        tableName = "boxes"
 )
 public class Box {
     public static int OPEN_TIME_IN_SECONDS = 3*60*60;
@@ -25,14 +20,14 @@ public class Box {
     public int userId;
 
     @ColumnInfo(name = "time")
-    public String time;
+    public Long time;
 
     @ColumnInfo(name = "isValid")
     public boolean isValid;
 
     public Box(int userId){
-        this.userId = id;
-        this.time = null;
+        this.userId = userId;
+        this.time = Long.MAX_VALUE;
         this.isValid = true;
     }
 }
